@@ -19,6 +19,7 @@ public class Framework {
     private int id ;
     @Column(name="name")
     private String name;
+
     @Column(name="languageId")
     private int languageId;
 

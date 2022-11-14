@@ -37,8 +37,9 @@ public class LanguageManager  implements LanguageService {
     @Override
     public List<GetAllLanguageResponse> getAll() {
         List<Language> response = _languageRepository.findAll();
-        List<GetAllFrameworkResponse>  frameworks = _frameworkService.getAll();
-        List<GetAllLanguageResponse> language = response.stream().map(responses -> _mapper.map(responses,GetAllLanguageResponse.class)).collect(Collectors.toList());
+       // List<GetAllFrameworkResponse>  frameworks = _frameworkService.getAll();
+        List<GetAllLanguageResponse> language = response.stream()
+                .map(responses -> _mapper.map(responses,GetAllLanguageResponse.class)).collect(Collectors.toList());
 
         return language;
 
@@ -62,8 +63,7 @@ public class LanguageManager  implements LanguageService {
         isNameExist(request.getName());
         isNameEmpty(request.getName());
         Language language = _languageRepository.getById(id);
-        Language mapper = _mapper.map(language,Language.class);
-        mapper.setName(request.getName());
+        language.setName(request.getName());
         return _mapper.map(_languageRepository.save(language),UpdateLanguageRequest.class);
     }
 

@@ -50,9 +50,8 @@ public class FrameworkManager implements FrameworkService {
         isNameEmpty(request.getName());
         isIdEmpty(id);
         Framework framework = _frameworkRepository.getById(id);
-        Framework mapper = _mapper.map(framework,Framework.class);
-        mapper.setName(request.getName());
-        mapper.setLanguageId(request.getLanguageId());
+        framework.setName(request.getName());
+        framework.setLanguageId(request.getLanguageId());
 
         return _mapper.map(_frameworkRepository.save(framework),FrameworkRequest.class);
 
